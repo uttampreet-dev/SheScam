@@ -569,7 +569,7 @@ function Dashboard() {
   const fetchData = useCallback(async () => {
     try {
       const [s,r] = await Promise.all([axios.get(`${API_URL}/api/stats`), axios.get(`${API_URL}/api/reports`)]);
-      if (s.data?.total > 0) { setStats(s.data); setReps(r.data); setDemo(false); }
+      if (s.data) { setStats(s.data); setReps(r.data); setDemo(false); }
       else { setStats(DEMO_STATS); setReps(DEMO_REPORTS); setDemo(true); }
     } catch { setStats(DEMO_STATS); setReps(DEMO_REPORTS); setDemo(true); }
     finally { setLoad(false); }
@@ -604,10 +604,10 @@ function Dashboard() {
         ) : (
           <div ref={trigRef}>
             <div className="grid-4" style={{ marginBottom:32 }}>
-              <CountCard label="Total Reports"  value={stats?.total||0}      color="#7c3aed" emoji="📊" trigger={vis}/>
-              <CountCard label="Scams Detected" value={stats?.scams||0}      color="#ef4444" emoji="🚨" trigger={vis}/>
-              <CountCard label="Suspicious"     value={stats?.suspicious||0} color="#f59e0b" emoji="⚠️" trigger={vis}/>
-              <CountCard label="Safe Messages"  value={stats?.safe||0}       color="#10b981" emoji="✅" trigger={vis}/>
+              <CountCard label="Total Reports"  value={stats?.total ?? 0}      color="#7c3aed" emoji="📊" trigger={vis && stats}/>
+              <CountCard label="Scams Detected" value={stats?.scams ?? 0}      color="#ef4444" emoji="🚨" trigger={vis && stats}/>
+              <CountCard label="Suspicious"     value={stats?.suspicious ?? 0} color="#f59e0b" emoji="⚠️" trigger={vis && stats}/>
+              <CountCard label="Safe Messages"  value={stats?.safe ?? 0}       color="#10b981" emoji="✅" trigger={vis && stats}/>
             </div>
             <div className="grid-2" style={{ marginBottom:24 }}>
               <div className="glass-card card-hover" style={{ padding:30 }}>
