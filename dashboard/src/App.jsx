@@ -546,7 +546,7 @@ function LiveChecker() {
 
 // ── DASHBOARD ─────────────────────────────────────────────────
 function CountCard({ label, value, color, emoji, trigger }) {
-  const n = useCountUp(value, trigger);
+  const n = value;
   return (
     <div className="glass-card card-hover" style={{ background:'rgba(255,255,255,.07)', border:`2px solid ${color}`, borderRadius:16, padding:28, boxShadow:`0 0 20px ${color}33`, textAlign:'center' }}>
       <div style={{ fontSize:30, marginBottom:10 }}>{emoji}</div>
