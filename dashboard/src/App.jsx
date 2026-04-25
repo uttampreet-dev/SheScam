@@ -742,38 +742,61 @@ function WADemo() {
   return (
     <section style={{ background:'linear-gradient(135deg,#07050f,#1a0f2e,#07050f)' }}>
       <div ref={ref} className="section reveal">
+        
         <div className="heading-wrapper">
-          <p style={{ fontSize:11, fontWeight:700, letterSpacing:4, textTransform:'uppercase', color:'#a78bfa', marginBottom:14 }}>WhatsApp Bot</p>
-          <h2 style={{ fontSize:48, marginBottom:16 }}>Try SheScam Bot <span className="gradient-text">Right Now</span></h2>
-          <p style={{ fontSize:16, color:'#9ca3af' }}>Save our number and forward any suspicious message. Works in Hindi and English.</p>
+          <p style={{ fontSize:11, fontWeight:700, letterSpacing:4, textTransform:'uppercase', color:'#a78bfa', marginBottom:14 }}>
+            WhatsApp Bot
+          </p>
+
+          <h2 style={{ fontSize:48, marginBottom:16 }}>
+            WhatsApp Integration <span className="gradient-text">Demo</span>
+          </h2>
+
+          <p style={{ fontSize:16, color:'#9ca3af' }}>
+            Users can report suspicious messages via WhatsApp and receive instant AI-powered scam analysis.
+          </p>
         </div>
+
         <div className="grid-2" style={{ alignItems:'center', maxWidth:1000, margin:'0 auto' }}>
+          
+          {/* Chat Preview */}
           <div style={{ background:'rgba(0,0,0,.5)', borderRadius:20, overflow:'hidden', border:'1px solid rgba(255,255,255,.08)' }}>
+            
             <div style={{ background:'#075e54', padding:'14px 20px', display:'flex', alignItems:'center', gap:12 }}>
               <div style={{ width:38,height:38,borderRadius:'50%',background:'linear-gradient(135deg,#7c3aed,#db2777)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18 }}>🛡️</div>
-              <div><div style={{ fontWeight:600, fontSize:14, color:'#fff' }}>SheScam Bot</div><div style={{ color:'#25d366', fontSize:12 }}>● online</div></div>
+              <div>
+                <div style={{ fontWeight:600, fontSize:14, color:'#fff' }}>SheScam Bot</div>
+                <div style={{ color:'#25d366', fontSize:12 }}>● demo</div>
+              </div>
             </div>
+
             <div style={{ padding:'20px 18px' }}>
               <div style={{ background:'rgba(255,255,255,.07)', borderRadius:'14px 14px 14px 3px', padding:'11px 14px', fontSize:13, color:'#d1d5db', maxWidth:'88%', marginBottom:14, lineHeight:1.5 }}>
                 Congratulations! You won ₹5,00,000 PM Yojana Lottery. Send Aadhaar + ₹500 processing fee to claim your prize.
               </div>
+
               <div style={{ background:'rgba(124,58,237,.15)', border:'1px solid rgba(124,58,237,.3)', borderRadius:'14px 14px 3px 14px', padding:'14px 16px', fontSize:13, marginLeft:'auto', maxWidth:'95%' }}>
                 <div style={{ color:'#ef4444', fontWeight:700, marginBottom:6 }}>🚨 SCAM DETECTED</div>
                 <div style={{ color:'#f87171', marginBottom:3 }}>📌 Type: LOTTERY / GOVT FRAUD</div>
                 <div style={{ color:'#d1d5db', marginBottom:3 }}>🚩 Govt never charges processing fees</div>
                 <div style={{ color:'#d1d5db', marginBottom:3 }}>🚩 No PM Yojana lottery exists</div>
-                <div style={{ color:'#d1d5db', marginBottom:8 }}>🚩 Aadhaar sharing is dangerous</div>
+                <div style={{ color:'#d1d5db', marginBottom:3 }}>🚩 Aadhaar sharing is dangerous</div>
                 <div style={{ color:'#10b981', fontWeight:600 }}>✅ Block & report — call 1930</div>
               </div>
             </div>
           </div>
+
+          {/* Feature Explanation */}
           <div>
-            <h3 style={{ fontSize:26, marginBottom:24, fontWeight:800 }}>Forward. Get verdict. Stay safe.</h3>
+            <h3 style={{ fontSize:26, marginBottom:24, fontWeight:800 }}>
+              Forward. Analyze. Stay safe.
+            </h3>
+
             {[
-              {e:'📲',t:'Save our number',     d:'Add SheScam Bot to your WhatsApp contacts'},
-              {e:'↗️',t:'Forward suspicious messages', d:'No typing needed — just forward directly'},
-              {e:'⚡',t:'Instant AI analysis',  d:'Get SAFE / SUSPICIOUS / SCAM in seconds'},
-              {e:'🌐',t:'Hindi + English',      d:'Works in both languages automatically'},
+              {e:'📲',t:'WhatsApp-based reporting', d:'Users can forward suspicious messages directly'},
+              {e:'⚡',t:'Instant AI analysis', d:'Get SAFE / SUSPICIOUS / SCAM in seconds'},
+              {e:'🌐',t:'Hindi + English', d:'Supports multilingual scam detection'},
+              {e:'🔒',t:'Privacy-first design', d:'Messages processed securely and anonymously'},
             ].map((item,i) => (
               <div key={i} style={{ display:'flex', gap:14, alignItems:'flex-start', marginBottom:20 }}>
                 <div style={{ fontSize:24, flexShrink:0, marginTop:2 }}>{item.e}</div>
@@ -783,10 +806,24 @@ function WADemo() {
                 </div>
               </div>
             ))}
-            <div style={{ display:'flex', gap:10, flexWrap:'wrap', marginTop:24 }}>
-              <div style={{ background:'rgba(16,185,129,.15)', border:'1px solid rgba(16,185,129,.4)', color:'#10b981', padding:'10px 20px', borderRadius:50, fontSize:13, fontWeight:600 }}>📲 Save on WhatsApp</div>
-              <div style={{ background:'rgba(124,58,237,.15)', border:'1px solid rgba(124,58,237,.4)', color:'#a78bfa', padding:'10px 20px', borderRadius:50, fontSize:13 }}>🔒 Anonymous & Free</div>
+
+            {/* Demo Notice (Claude idea improved) */}
+            <div style={{ 
+              background:'rgba(16,185,129,.15)', 
+              border:'1px solid rgba(16,185,129,.4)', 
+              color:'#10b981', 
+              padding:'14px 24px', 
+              borderRadius:12, 
+              fontSize:14, 
+              textAlign:'center', 
+              marginTop:24 
+            }}>
+              📱 <strong>WhatsApp Integration Available</strong> — Bot runs in a controlled demo environment.<br/>
+              {/* <span style={{ fontSize:12, color:'#6b7280', marginTop:6, display:'block' }}>
+                See demo video for live interaction
+              </span> */}
             </div>
+
           </div>
         </div>
       </div>
