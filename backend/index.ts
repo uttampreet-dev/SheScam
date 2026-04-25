@@ -60,7 +60,14 @@ Analyze the message and respond ONLY in this exact JSON format, nothing else:
 }
 
 const app = new Elysia()
-  .use(cors())
+  // .use(cors())
+  .use(cors({
+  origin: [
+    "http://localhost:5173",
+    "https://shescam.vercel.app",  // your vercel URL
+    "*"  // or allow all for hackathon
+  ]
+}))
 
   // Health check
   .get("/", () => ({ status: "SheScam backend running!" }))
