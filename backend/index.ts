@@ -82,8 +82,9 @@ Return EXACTLY this format:
       };
     }
     const text = data.choices[0].message.content;
+    const cleanText = text.replace(/```json/g, "").replace(/```/g, "").trim();
     try {
-      return JSON.parse(text);
+      return JSON.parse(cleanText);
     } catch {
       return {
         verdict: "SUSPICIOUS",
