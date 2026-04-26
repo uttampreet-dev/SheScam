@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  axios.post("https://shescam.onrender.com/api/analyze", { message: "test", city: "test" })
+    .then(res => console.log("SUCCESS", res.data))
+    .catch(err => console.log("ERROR", err.message, err.response?.status));
+</script>
+</body>
+</html>

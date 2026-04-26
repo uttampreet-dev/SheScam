@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+  axios.post("https://shescam.onrender.com/api/analyze", { message: "I won a lottery", city: "Delhi" })
+    .then(res => {
+      console.log("SUCCESS", res.data);
+      document.body.innerHTML += `<div id="result">SUCCESS: ${JSON.stringify(res.data)}</div>`;
+    })
+    .catch(err => {
+      console.log("ERROR", err.message, err.response?.status);
+      document.body.innerHTML += `<div id="error">ERROR: ${err.message}</div>`;
+    });
+</script>
+</body>
+</html>

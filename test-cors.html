@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<body>
+<script>
+  fetch("https://shescam.onrender.com/api/analyze", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ message: "test", city: "test" })
+  })
+  .then(r => r.json())
+  .then(data => console.log("SUCCESS", data))
+  .catch(err => console.log("ERROR", err));
+</script>
+</body>
+</html>
