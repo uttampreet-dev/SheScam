@@ -13,13 +13,25 @@ const supabase = createClient(
 // Groq AI scam detection
 async function detectScam(message: string) {
   try {
+    const apiKey = process.env.GROQ_API_KEY;
+    if (!apiKey) {
+      console.error("GROQ_API_KEY is not set");
+      return {
+        verdict: "SUSPICIOUS",
+        scam_type: "other",
+        red_flags: ["Could not analyze properly"],
+        explanation: "Please be careful with this message.",
+        next_steps: "Do not share personal information.",
+      };
+    }
+    
     const response = await fetch(
       "https://api.groq.com/openai/v1/chat/completions",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+          Authorization: `Bearer ${apiKey}`,
         },
         body: JSON.stringify({
           model: "llama3-8b-8192",
