@@ -48,7 +48,13 @@ Analyze the message and respond ONLY in this exact JSON format, nothing else:
     const data = await response.json();
     if (!data.choices || !data.choices[0]) {
       console.error("Groq API error:", data);
-      throw new Error("Invalid Groq API response");
+      return {
+        verdict: "SUSPICIOUS",
+        scam_type: "other",
+        red_flags: ["Could not analyze properly"],
+        explanation: "Please be careful with this message.",
+        next_steps: "Do not share personal information.",
+      };
     }
     const text = data.choices[0].message.content;
     try {
