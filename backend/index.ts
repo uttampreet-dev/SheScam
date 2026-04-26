@@ -12,20 +12,21 @@ const supabase = createClient(
 
 // Groq AI scam detection
 async function detectScam(message: string) {
-  const response = await fetch(
-    "https://api.groq.com/openai/v1/chat/completions",
-    {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
-      },
-      body: JSON.stringify({
-        model: "llama3-8b-8192",
-        messages: [
-          {
-            role: "system",
-            content: `You are SheScam, a scam detection assistant for women in India. 
+  try {
+    const response = await fetch(
+      "https://api.groq.com/openai/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        },
+        body: JSON.stringify({
+          model: "llama3-8b-8192",
+          messages: [
+            {
+              role: "system",
+              content: `You are SheScam, a scam detection assistant for women in India. 
 Analyze the message and respond ONLY in this exact JSON format, nothing else:
 {
   "verdict": "SAFE" or "SUSPICIOUS" or "SCAM",
@@ -34,21 +35,35 @@ Analyze the message and respond ONLY in this exact JSON format, nothing else:
   "explanation": "2-3 sentence plain explanation in same language as input",
   "next_steps": "What the user should do now"
 }`,
-          },
-          {
-            role: "user",
-            content: `Analyze this message for scam indicators: "${message}"`,
-          },
-        ],
-        temperature: 0.1,
-      }),
+            },
+            {
+              role: "user",
+              content: `Analyze this message for scam indicators: "${message}"`,
+            },
+          ],
+          temperature: 0.1,
+        }),
+      }
+    );
+    const data = await response.json();
+    if (!data.choices || !data.choices[0]) {
+      console.error("Groq API error:", data);
+      throw new Error("Invalid Groq API response");
     }
-  );
-  const data = await response.json();
-  const text = data.choices[0].message.content;
-  try {
-    return JSON.parse(text);
-  } catch {
+    const text = data.choices[0].message.content;
+    try {
+      return JSON.parse(text);
+    } catch {
+      return {
+        verdict: "SUSPICIOUS",
+        scam_type: "other",
+        red_flags: ["Could not analyze properly"],
+        explanation: "Please be careful with this message.",
+        next_steps: "Do not share personal information.",
+      };
+    }
+  } catch (error) {
+    console.error("detectScam error:", error);
     return {
       verdict: "SUSPICIOUS",
       scam_type: "other",
