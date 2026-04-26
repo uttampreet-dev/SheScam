@@ -90,22 +90,27 @@ const app = new Elysia()
 
   // Main scam detection endpoint
   .post("/api/analyze", async ({ body }: { body: any }) => {
-    const { message, city } = body;
-    if (!message) return { error: "Message is required" };
+    try {
+      const { message, city } = body;
+      if (!message) return { error: "Message is required" };
 
-    const result = await detectScam(message);
+      const result = await detectScam(message);
 
-    // Save to Supabase
-    await supabase.from("reports").insert({
-      message: message.substring(0, 500),
-      verdict: result.verdict,
-      scam_type: result.scam_type,
-      red_flags: result.red_flags.join(", "),
-      language: "auto",
-      city: city || "Unknown",
-    });
+      // Save to Supabase
+      await supabase.from("reports").insert({
+        message: message.substring(0, 500),
+        verdict: result.verdict,
+        scam_type: result.scam_type,
+        red_flags: result.red_flags.join(", "),
+        language: "auto",
+        city: city || "Unknown",
+      });
 
-    return result;
+      return result;
+    } catch (err: any) {
+      console.error("API error:", err);
+      return { error: err.message || "Internal Server Error" };
+    }
   })
 
   // Get all reports for dashboard
