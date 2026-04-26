@@ -1,8 +1,3 @@
-fetch("https://api.groq.com/openai/v1/chat/completions", {
-  method: "POST",
-  headers: { "Content-Type": "application/json", Authorization: "Bearer undefined" },
-  body: JSON.stringify({
-    model: "llama3-8b-8192",
-    messages: [{ role: "user", content: "test" }]
-  })
-}).then(r => r.json()).then(console.log);
+const axios = require("axios");
+axios.post("https://shescam.onrender.com//api/analyze", { message: "test" })
+  .catch(err => console.log("ERR", err.response?.status, err.response?.statusText));
