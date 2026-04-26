@@ -79,7 +79,8 @@ const app = new Elysia()
   .use(cors({
   origin: [
     "http://localhost:5173",
-    "https://she-scam.vercel.app/",  // your vercel URL
+    "https://she-scam.vercel.app",  // your vercel URL
+    "https://she-scam.vercel.app/",
     "*"  // or allow all for hackathon
   ]
 }))
