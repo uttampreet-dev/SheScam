@@ -1,5 +1,4 @@
-fetch("https://shescam.onrender.com/api/analyze", {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({ message: "test", city: "Delhi" })
-}).then(r => r.text()).then(console.log).catch(console.error);
+const axios = require("axios");
+axios.post("https://shescam.onrender.com/api/analyze", { message: "test", city: "test" })
+  .then(res => console.log("OK", res.status))
+  .catch(err => console.log("ERR", err.response?.status, err.response?.data));
