@@ -54,7 +54,7 @@ Return EXACTLY this format:
         }),
       }
     );
-    const data = await response.json();
+    const data: any = await response.json();
     if (!data.choices || !data.choices[0]) {
       console.error("Groq API error:", data);
       return {
@@ -65,19 +65,25 @@ Return EXACTLY this format:
         next_steps: "Do not share personal information.",
       };
     }
-    const text = data.choices[0].message.content;
+    const text = data.choices?.[0]?.message?.content || "";
     const cleanText = text.replace(/```json/g, "").replace(/```/g, "").trim();
     try {
-      return JSON.parse(cleanText);
-    } catch {
-      return {
-        verdict: "SUSPICIOUS",
-        scam_type: "other",
-        red_flags: ["Could not analyze properly"],
-        explanation: "Please be careful with this message.",
-        next_steps: "Do not share personal information.",
-      };
-    }
+  return JSON.parse(cleanText);
+} catch {
+  const lower = cleanText.toLowerCase();
+
+  let verdict = "SUSPICIOUS";
+  if (lower.includes("scam")) verdict = "SCAM";
+  else if (lower.includes("safe")) verdict = "SAFE";
+
+  return {
+    verdict,
+    scam_type: "other",
+    red_flags: ["Heuristic fallback used"],
+    explanation: "AI format issue, used keyword detection.",
+    next_steps: "Avoid sharing personal info.",
+  };
+}
   } catch (error) {
     console.error("detectScam error:", error);
     return {
