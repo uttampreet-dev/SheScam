@@ -95,18 +95,9 @@ body::before{
 
 /* Animations */
 @keyframes heroAmbient {
-  0% {
-    transform: scale(1) translateY(0px);
-    opacity: 0.9;
-  }
-  50% {
-    transform: scale(1.05) translateY(-10px);
-    opacity: 1;
-  }
-  100% {
-    transform: scale(1) translateY(0px);
-    opacity: 0.9;
-  }
+  0% { transform: scale(1) translateY(0px); opacity: 0.9; }
+  50% { transform: scale(1.05) translateY(-10px); opacity: 1; }
+  100% { transform: scale(1) translateY(0px); opacity: 0.9; }
 }
 @keyframes fadeInUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
 @keyframes floatingHero{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
@@ -115,27 +106,10 @@ body::before{
 @keyframes pulse{0%,100%{opacity:1;}50%{opacity:.5;}}
 @keyframes borderGlow{0%,100%{box-shadow:0 0 0 1px rgba(124,58,237,.2);}50%{box-shadow:0 0 0 1px rgba(124,58,237,.6),0 0 24px rgba(124,58,237,.2);}}
 
-/* Card hover */
-// .card-hover{transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;cursor:default;}
-// .card-hover:hover{transform:translateY(-4px);box-shadow:0 0 0 1px rgba(124,58,237,.6),0 8px 40px rgba(124,58,237,.25)!important;border-color:rgba(124,58,237,.7)!important;}
-// .card-hover {
-//   transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;
-// }
-
-// .card-hover:hover {
-//   transform: translateY(-4px) scale(1.02);
-//   // box-shadow: 0 10px 30px rgba(124,58,237,.18), 0 0 0 1px rgba(124,58,237,.35), inset 0 0 20px rgba(124,58,237,.08);
-//   box-shadow:
-//     0 0 0 1.5px rgba(168,85,247,.9),   /* main border */
-//     0 0 20px rgba(168,85,247,.45),     /* glow */
-//     0 8px 30px rgba(0,0,0,.4);  
-//   border-color: rgba(168,85,247,.9);
-// }
 .card-hover {
   cursor: pointer;
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
-
 .card-hover:hover {
   transform: translateY(-4px);
   box-shadow:
@@ -150,25 +124,10 @@ body::before{
   background:rgba(255,255,255,.03);
   border:1px solid rgba(255,255,255,.08);
   backdrop-filter:blur(12px);
-  // -webkit-backdrop-filter:blur(20px);
   border-radius:16px;
-  
 }
-// .glass-card:hover{
-//   border-color:rgba(124,58,237,.7);
-//   box-shadow:0 0 0 1px rgba(124,58,237,.4),0 8px 40px rgba(124,58,237,.2),inset 0 0 30px rgba(124,58,237,.05);
-//   transform:translateY(-4px);
-// }
 
 /* Buttons */
-// .btn-primary{
-//   background:linear-gradient(135deg,#7c3aed,#db2777);
-//   color:#fff;border:none;padding:16px 40px;border-radius:30px;
-//   font-weight:600;font-size:16px;font-family:'DM Sans',sans-serif;
-//   cursor:pointer;transition:transform .3s,box-shadow .3s;
-//   box-shadow:0 0 30px rgba(124,58,237,.4);
-// }
-// .btn-primary:hover{transform:scale(1.05);box-shadow:0 0 50px rgba(124,58,237,.6);}
 .btn-primary {
   background: linear-gradient(135deg,#7c3aed,#db2777);
   color:#fff;
@@ -184,7 +143,6 @@ body::before{
   position:relative;
   overflow:hidden;
 }
-
 .btn-primary::after {
   content:'';
   position:absolute;
@@ -193,15 +151,9 @@ body::before{
   opacity:0;
   transition:opacity .3s;
 }
+.btn-primary:hover { transform:scale(1.05); box-shadow:0 0 50px rgba(124,58,237,.6); }
+.btn-primary:hover::after { opacity:1; }
 
-.btn-primary:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 50px rgba(124,58,237,.6);
-}
-
-.btn-primary:hover::after {
-  opacity:1;
-}
 .btn-ghost{
   background:transparent;color:#e879f9;
   border:2px solid #7c3aed;padding:14px 40px;border-radius:30px;
@@ -242,8 +194,252 @@ body::before{
 /* Progress bar */
 #scroll-progress{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,#7c3aed,#db2777,#e879f9);z-index:9999;transition:width .1s linear;}
 
-@media(max-width:1024px){.grid-3{grid-template-columns:repeat(2,1fr);}.grid-4{grid-template-columns:repeat(2,1fr);}}
-@media(max-width:768px){.grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}.section{padding:60px 20px;}.section-full{padding:60px 20px;}}
+/* ── NAVBAR MOBILE ── */
+.nav-desktop-links { display: flex; gap: 28px; align-items: center; }
+.nav-desktop-btn   { display: block; }
+
+/* ── HERO STAT GRID ── */
+.hero-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* ── HERO BUTTON ROW ── */
+.hero-btn-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-bottom: 64px;
+  flex-wrap: wrap;
+}
+
+/* ── HEATMAP GRID ── */
+.heatmap-outer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.heatmap-state-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+@media(max-width:1024px){
+  .grid-3{grid-template-columns:repeat(2,1fr);}
+  .grid-4{grid-template-columns:repeat(2,1fr);}
+}
+
+@media(max-width:768px){
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr;}
+  .section{padding:60px 20px;}
+  .section-full{padding:60px 20px;}
+
+  /* Navbar — hide desktop links & button on mobile */
+  .nav-desktop-links { display: none; }
+  .nav-desktop-btn   { display: none; }
+
+  /* Hero stat grid — 2×2 on mobile */
+  .hero-stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    max-width: 100%;
+  }
+
+  /* Hero button row — stack vertically, full width */
+  .hero-btn-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 48px;
+  }
+  .hero-btn-row .btn-primary,
+  .hero-btn-row .btn-ghost {
+    width: 100%;
+    max-width: 320px;
+    padding: 14px 20px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  /* Heatmap — stack vertically */
+  .heatmap-outer {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  /* Heatmap state card grid — 3 cols on mobile (fits nicely) */
+  .heatmap-state-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+}
+
+@media(max-width:480px){
+  .heatmap-state-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+}
+
+/* ── HAMBURGER MENU ── */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  z-index: 1100;
+}
+.hamburger-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #e5e7eb;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.open span:nth-child(2) { opacity: 0; }
+.hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.mobile-menu {
+  display: none;
+}
+
+/* ── DASHBOARD HEADER MOBILE ── */
+.dashboard-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+.dashboard-header-meta {
+  margin-left: auto;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── SELECT RESET for Android ── */
+.inp[data-type="select"], select.inp {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+}
+
+/* ── REPORT CARD TIMESTAMP ── */
+.report-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 5px;
+  gap: 8px;
+}
+.report-timestamp {
+  color: #6b7280;
+  font-size: 11px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* ── HEATMAP TOUCH TOOLTIP (inline, mobile only) ── */
+.heatmap-inline-tip {
+  display: none;
+}
+
+@media(max-width: 768px) {
+  /* Show hamburger, hide desktop nav */
+  .hamburger-btn { display: flex; }
+  .nav-desktop-links { display: none !important; }
+  .nav-desktop-btn   { display: none !important; }
+
+  /* Mobile slide-down menu */
+  .mobile-menu {
+    display: block;
+    position: fixed;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: rgba(7,5,15,0.97);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255,255,255,.08);
+    z-index: 999;
+    padding: 16px 0 20px;
+    transform: translateY(-110%);
+    transition: transform 0.35s cubic-bezier(0.4,0,0.2,1);
+    pointer-events: none;
+  }
+  .mobile-menu.open {
+    transform: translateY(0);
+    pointer-events: all;
+  }
+  .mobile-menu a {
+    display: block;
+    padding: 13px 28px;
+    color: #9ca3af;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s, background 0.2s;
+    border-left: 3px solid transparent;
+  }
+  .mobile-menu a:hover, .mobile-menu a.active {
+    color: #e5e7eb;
+    background: rgba(124,58,237,0.08);
+    border-left-color: #7c3aed;
+  }
+  .mobile-menu-cta {
+    margin: 12px 28px 0;
+  }
+
+  /* Dashboard header — stack title + meta vertically */
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  .dashboard-header-meta {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  /* Report card timestamp — relative time is short, wrap is fine */
+  .report-timestamp {
+    font-size: 10px;
+  }
+
+  /* Heatmap: show inline tap tip instead of fixed hover tooltip */
+  .heatmap-inline-tip {
+    display: block;
+    text-align: center;
+    background: rgba(124,58,237,0.15);
+    border: 1px solid rgba(124,58,237,0.3);
+    border-radius: 10px;
+    padding: 8px 14px;
+    margin-bottom: 12px;
+    font-size: 13px;
+    color: #a78bfa;
+    min-height: 36px;
+  }
+}
 `;
 
 if (typeof document !== 'undefined') {
@@ -280,6 +476,15 @@ function useIntersect(ref, cb) {
   }, [cb, ref]);
 }
 
+// ── Relative time helper ─────────────────────────────────────
+function timeAgo(dateStr) {
+  const diff = Math.floor((Date.now() - new Date(dateStr)) / 1000);
+  if (diff < 60)  return `${diff}s ago`;
+  if (diff < 3600) return `${Math.floor(diff/60)}m ago`;
+  if (diff < 86400) return `${Math.floor(diff/3600)}h ago`;
+  return `${Math.floor(diff/86400)}d ago`;
+}
+
 // ── NAVBAR ────────────────────────────────────────────────────
 const LINKS = [
   {id:'hero',label:'Home'},{id:'how-it-works',label:'How It Works'},
@@ -290,17 +495,16 @@ const LINKS = [
 function Navbar() {
   const [scrolled,setScrolled] = useState(false);
   const [active,setActive]     = useState('hero');
+  const [menuOpen,setMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 50);
-      // scroll progress bar
       const prog = document.getElementById('scroll-progress');
       if (prog) {
         const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         prog.style.width = pct + '%';
       }
-      // active section
       let cur = 'hero';
       LINKS.forEach(({ id }) => {
         const el = document.getElementById(id);
@@ -312,35 +516,64 @@ function Navbar() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
-  const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior:'smooth' });
+  const go = (id) => {
+    document.getElementById(id)?.scrollIntoView({ behavior:'smooth' });
+    setMenuOpen(false);
+  };
 
   return (
     <>
       <div id="scroll-progress" style={{ width:'0%' }} />
       <nav style={{
-        position:'fixed',top:0,width:'100%',zIndex:1000,
-        backgroundColor: scrolled ? 'rgba(7,5,15,0.85)' : 'transparent',
-        backdropFilter: scrolled ? 'blur(20px)' : 'none',
-        WebkitBackdropFilter: scrolled ? 'blur(20px)' : 'none',
-        borderBottom: scrolled ? '1px solid rgba(255,255,255,.08)' : 'none',
+        position:'fixed', top:0, width:'100%', zIndex:1000,
+        backgroundColor: scrolled || menuOpen ? 'rgba(7,5,15,0.95)' : 'transparent',
+        backdropFilter: scrolled || menuOpen ? 'blur(20px)' : 'none',
+        WebkitBackdropFilter: scrolled || menuOpen ? 'blur(20px)' : 'none',
+        borderBottom: scrolled || menuOpen ? '1px solid rgba(255,255,255,.08)' : 'none',
         transition:'all .3s ease',
         padding:'0 40px',
       }}>
         <div style={{ maxWidth:1400, margin:'0 auto', display:'flex', justifyContent:'space-between', alignItems:'center', height:68 }}>
+          {/* Logo */}
           <div style={{ fontSize:22, fontWeight:800, display:'flex', alignItems:'center', gap:10, cursor:'pointer' }} onClick={() => go('hero')}>
             <span style={{ fontSize:26 }}>🛡️</span>
             <span className="shimmer-logo">SheScam</span>
           </div>
-          <div style={{ display:'flex', gap:28, alignItems:'center' }}>
+
+          {/* Desktop nav links — hidden on mobile */}
+          <div className="nav-desktop-links">
             {LINKS.slice(1,7).map(({ id, label }) => (
               <a key={id} className={`nav-link ${active===id?'active':''}`} onClick={() => go(id)}>{label}</a>
             ))}
           </div>
-          <button className="btn-primary" style={{ padding:'10px 22px', fontSize:13 }} onClick={() => go('checker')}>
+
+          {/* Desktop CTA — hidden on mobile */}
+          <button className="btn-primary nav-desktop-btn" style={{ padding:'10px 22px', fontSize:13 }} onClick={() => go('checker')}>
             🔍 Check a Message
+          </button>
+
+          {/* Hamburger — mobile only */}
+          <button
+            className={`hamburger-btn ${menuOpen ? 'open' : ''}`}
+            onClick={() => setMenuOpen(o => !o)}
+            aria-label="Toggle menu"
+          >
+            <span/><span/><span/>
           </button>
         </div>
       </nav>
+
+      {/* Mobile slide-down menu */}
+      <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
+        {LINKS.slice(1).map(({ id, label }) => (
+          <a key={id} className={active===id?'active':''} onClick={() => go(id)}>{label}</a>
+        ))}
+        <div className="mobile-menu-cta">
+          <button className="btn-primary" style={{ width:'100%', padding:'13px 20px', fontSize:14 }} onClick={() => go('checker')}>
+            🔍 Check a Message Now
+          </button>
+        </div>
+      </div>
     </>
   );
 }
@@ -354,52 +587,105 @@ function Hero() {
     { v:'100%',   l:'Free forever',                 icon:'🎁' },
   ];
   return (
-    <section id="hero" style={{ minHeight:'92vh', display:'flex', alignItems:'center', justifyContent:'center', position:'relative', paddingTop:80, background:'linear-gradient(135deg,#07050f 0%,#1a0f2e 100%)', overflow:'hidden' }}>
-      <div style={{ position:'absolute', width:'100%', height:'100%', top:0, left:0, zIndex:0, background:`radial-gradient(circle at 20% 50%,rgba(124,58,237,.12) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(219,39,119,.1) 0%,transparent 50%)`, pointerEvents:'none', animation:'heroAmbient 12s ease-in-out infinite alternate' }} />
-      <div style={{ position:'relative', zIndex:1, maxWidth:860, textAlign:'center', padding:'40px 20px',filter:'drop-shadow(0 0 40px rgba(124,58,237,0.15))'}}>
+    <section id="hero" style={{
+      minHeight:'92vh', display:'flex', alignItems:'center', justifyContent:'center',
+      position:'relative', paddingTop:80,
+      background:'linear-gradient(135deg,#07050f 0%,#1a0f2e 100%)', overflow:'hidden'
+    }}>
+      <div style={{
+        position:'absolute', width:'100%', height:'100%', top:0, left:0, zIndex:0,
+        background:`radial-gradient(circle at 20% 50%,rgba(124,58,237,.12) 0%,transparent 50%),radial-gradient(circle at 80% 80%,rgba(219,39,119,.1) 0%,transparent 50%)`,
+        pointerEvents:'none', animation:'heroAmbient 12s ease-in-out infinite alternate'
+      }} />
+
+      <div style={{
+        position:'relative', zIndex:1, maxWidth:860, textAlign:'center',
+        /* Use horizontal padding instead of fixed padding so it breathes on mobile */
+        padding:'40px 24px',
+        filter:'drop-shadow(0 0 40px rgba(124,58,237,0.15))',
+        width:'100%',
+      }}>
         <div style={{ marginBottom:16 }}>
           <div className="live-badge"><div className="live-dot"/>AI-POWERED PROTECTION</div>
         </div>
-       <h1 style={{ 
-  fontSize:'clamp(42px,6vw,60px)', 
-  fontWeight:800, 
-  marginBottom:24, 
-  lineHeight:1.06
-}}>
-  <span style={{ whiteSpace:'nowrap' }}>
-    Scams Target
-  </span>
-  <br />
-  Women.
-  <br />
-  <span className="hero-shimmer">
-    We Fight
-    <br />
-    Back.
-  </span>
-</h1>
-        <p style={{ fontSize:18, color:'#9ca3af', marginBottom:44, lineHeight:1.7, maxWidth:580, margin:'0 auto 44px' }}>
-          Forward any suspicious WhatsApp message to our AI-powered bot and get instant scam detection in under <strong style={{color:'#e5e7eb'}}>10 seconds</strong>. Free. Always.
+
+        {/* 
+          Hero heading: clamp handles desktop→mobile scaling automatically.
+          Removed whiteSpace:'nowrap' on "Scams Target" so it wraps on small screens.
+        */}
+        <h1 style={{
+          fontSize:'clamp(36px, 6vw, 60px)',
+          fontWeight:800,
+          marginBottom:24,
+          lineHeight:1.06,
+        }}>
+          Scams Target<br />
+          Women.<br />
+          <span className="hero-shimmer">We Fight<br />Back.</span>
+        </h1>
+
+        <p style={{
+          fontSize:'clamp(15px, 2vw, 18px)',
+          color:'#9ca3af',
+          marginBottom:44,
+          lineHeight:1.7,
+          maxWidth:580,
+          margin:'0 auto 44px',
+        }}>
+          Forward any suspicious WhatsApp message to our AI-powered bot and get instant scam detection in under{' '}
+          <strong style={{color:'#e5e7eb'}}>10 seconds</strong>. Free. Always.
         </p>
-        <div style={{ display:'flex', gap:20, justifyContent:'center', marginBottom:64, flexWrap:'wrap' }}>
-          <button className="btn-primary" onClick={() => document.getElementById('checker')?.scrollIntoView({behavior:'smooth'})}>🔍 Check a Message Now</button>
-          <button className="btn-ghost" onClick={() => document.getElementById('dashboard')?.scrollIntoView({behavior:'smooth'})}>📊 View Dashboard</button>
+
+        {/* Button row — uses CSS class for mobile stacking */}
+        <div className="hero-btn-row">
+          <button
+            className="btn-primary"
+            onClick={() => document.getElementById('checker')?.scrollIntoView({behavior:'smooth'})}
+          >
+            🔍 Check a Message Now
+          </button>
+          <button
+            className="btn-ghost"
+            onClick={() => document.getElementById('dashboard')?.scrollIntoView({behavior:'smooth'})}
+          >
+            📊 View Dashboard
+          </button>
         </div>
-        {/* Stat pills with VALUE prominent */}
-        <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:16, maxWidth:720, margin:'0 auto' }}>
+
+        {/* Stat cards — uses CSS class for 4-col→2-col switch */}
+        <div className="hero-stat-grid">
           {stats.map((s,i) => (
-            <div key={i} className="glass-card card-hover" style={{ background:'rgba(124,58,237,.08)',
-  padding:'20px 16px', borderRadius:16, border:'1px solid rgba(255,255,255,0.08)',textAlign:'center', animation:`fadeInUp .5s ease ${i*.08}s both`}}>
-              {/* <div style={{ fontSize:26, marginBottom:8 }}>{s.icon}</div> */}
-              
-              <div style={{ fontFamily:"'Inter',sans-serif", fontWeight:800, fontSize:34, color: i===0 ? '#fb7185' : 
-       i===1 ? '#f59e0b' : 
-       i===2 ? '#34d399' : 
-               '#a78bfa', marginBottom:8, letterSpacing:'-0.5px' }}><span style={{ whiteSpace: 'nowrap' }}>{s.v}</span></div>
-              <div style={{ fontSize:12, color:'#94a3b8', lineHeight:1.2 }}>{s.l}</div>
+            <div
+              key={i}
+              className="glass-card card-hover"
+              style={{
+                background:'rgba(124,58,237,.08)',
+                padding:'20px 16px',
+                borderRadius:16,
+                border:'1px solid rgba(255,255,255,0.08)',
+                textAlign:'center',
+                animation:`fadeInUp .5s ease ${i*.08}s both`,
+              }}
+            >
+              <div style={{
+                fontFamily:"'Inter',sans-serif",
+                fontWeight:800,
+                /* clamp so values don't overflow on tiny screens */
+                fontSize:'clamp(22px, 4vw, 34px)',
+                color: i===0 ? '#fb7185' : i===1 ? '#f59e0b' : i===2 ? '#34d399' : '#a78bfa',
+                marginBottom:8,
+                letterSpacing:'-0.5px',
+              }}>
+                {/* No whiteSpace:nowrap — let it wrap if truly needed */}
+                {s.v}
+              </div>
+              <div style={{ fontSize:'clamp(10px, 1.5vw, 12px)', color:'#94a3b8', lineHeight:1.3 }}>
+                {s.l}
+              </div>
             </div>
           ))}
         </div>
+
         <div style={{ marginTop:36, display:'flex', justifyContent:'center' }}>
           <div className="live-badge"><div className="live-dot"/>Live Platform</div>
         </div>
@@ -429,20 +715,7 @@ function HowItWorks() {
         <div className="grid-3">
           {steps.map((s,i) => (
             <div key={i} className="glass-card card-hover" style={{ background:'rgba(124,58,237,.06)', border:'2px solid rgba(124,58,237,.25)', borderRadius:20, padding:'44px 32px', position:'relative', overflow:'hidden', animation:`fadeInUp .6s cubic-bezier(.34,1.56,.64,1) ${i*.1}s both` }}>
-              {/* <div style={{ position:'absolute', top:-10, right:-10, fontSize:120, opacity:.07, fontWeight:800, color:'#7c3aed', userSelect:'none', pointerEvents:'none' }}>{s.num}</div> */}
-              <div style={{
-  position: 'absolute',
-  top: 20,
-  right: 16,
-  fontSize: 100,
-  opacity: 0.05,
-  fontWeight: 800,
-  color: '#7c3aed',
-  pointerEvents: 'none',
-  userSelect: 'none'
-}}>
-  {s.num}
-</div>
+              <div style={{ position:'absolute', top:20, right:16, fontSize:100, opacity:0.05, fontWeight:800, color:'#7c3aed', pointerEvents:'none', userSelect:'none' }}>{s.num}</div>
               <div style={{ position:'relative', zIndex:1 }}>
                 <div style={{ fontSize:48, marginBottom:20 }}>{s.emoji}</div>
                 <h3 style={{ fontSize:20, marginBottom:10 }}>{s.title}</h3>
@@ -486,7 +759,7 @@ function LiveChecker() {
           <h2 style={{ fontSize:48, marginBottom:16 }}>Check Any Message <span className="gradient-text">Right Now</span></h2>
           <p style={{ fontSize:16, color:'#9ca3af' }}>No WhatsApp needed — paste any suspicious message and get instant AI analysis</p>
         </div>
-        <div style={{ maxWidth:800, margin:'0 auto', background:'rgba(124,58,237,.1)', border:'2px solid rgba(124,58,237,.3)', borderRadius:24, padding:44 }}>
+        <div style={{ maxWidth:800, margin:'0 auto', background:'rgba(124,58,237,.1)', border:'2px solid rgba(124,58,237,.3)', borderRadius:24, padding:'clamp(20px,5vw,44px)' }}>
           <div style={{ marginBottom:20 }}>
             <label style={{ display:'block', marginBottom:10, fontSize:14, color:'#d1d5db' }}>Suspicious Message</label>
             <textarea className="inp" value={msg} onChange={e=>setMsg(e.target.value)} rows={5} placeholder="Paste any suspicious message here… e.g. 'Congratulations! You won ₹5,00,000 in PM Yojana lottery…'" />
@@ -585,12 +858,12 @@ function Dashboard() {
   return (
     <section id="dashboard" style={{ background:'#07050f' }}>
       <div ref={ref} className="section reveal">
-        <div style={{ display:'flex', alignItems:'center', gap:20, marginBottom:12, flexWrap:'wrap' }}>
+        <div className="dashboard-header">
           <div>
             <p style={{ fontSize:11, fontWeight:700, letterSpacing:4, textTransform:'uppercase', color:'#a78bfa', marginBottom:10 }}>Live Data</p>
-            <h2 style={{ fontSize:'clamp(36px,4vw,48px)', fontWeight:700}}>Community Intelligence, <span className="gradient-text">Visualised</span></h2>
+            <h2 style={{ fontSize:'clamp(28px,4vw,48px)', fontWeight:700}}>Community Intelligence, <span className="gradient-text">Visualised</span></h2>
           </div>
-          <div style={{ marginLeft:'auto', display:'flex', gap:12, alignItems:'center', flexWrap:'wrap' }}>
+          <div className="dashboard-header-meta">
             <div className="live-badge"><div className="live-dot"/>LIVE</div>
             <span style={{ fontSize:13, color:'#6b7280' }}>Auto-refreshes every 30s</span>
             {demo && <span style={{ background:'rgba(245,158,11,.15)', border:'1px solid rgba(245,158,11,.4)', color:'#f59e0b', fontSize:11, padding:'4px 12px', borderRadius:20 }}>Demo data</span>}
@@ -648,9 +921,9 @@ function Dashboard() {
                   <div key={r.id} style={{ background:'rgba(255,255,255,.03)', borderLeft:`4px solid ${VC[r.verdict]||'#7c3aed'}`, borderRadius:10, padding:'14px 18px', marginBottom:12, transition:'all .2s', cursor:'default' }}
                     onMouseEnter={e=>{e.currentTarget.style.background='rgba(124,58,237,.08)';e.currentTarget.style.transform='translateY(-2px)';}}
                     onMouseLeave={e=>{e.currentTarget.style.background='rgba(255,255,255,.03)';e.currentTarget.style.transform='translateY(0)';}}>
-                    <div style={{ display:'flex', justifyContent:'space-between', marginBottom:5 }}>
+                    <div className="report-card-top">
                       <span style={{ color:VC[r.verdict], fontWeight:700, fontSize:13 }}>{r.verdict==='SCAM'?'🚨':r.verdict==='SUSPICIOUS'?'⚠️':'✅'} {r.verdict}</span>
-                      <span style={{ color:'#6b7280', fontSize:11 }}>{new Date(r.created_at).toLocaleString()}</span>
+                      <span className="report-timestamp">{timeAgo(r.created_at)}</span>
                     </div>
                     <div style={{ color:'#9ca3af', fontSize:12, marginBottom:3 }}>📌 {r.scam_type?.toUpperCase()}{r.city&&r.city!=='Unknown'?` · 📍 ${r.city}`:''}</div>
                     <div style={{ color:'#6b7280', fontSize:12 }}>{r.message?.substring(0,90)}…</div>
@@ -668,10 +941,12 @@ function Dashboard() {
 // ── INDIA HEATMAP ─────────────────────────────────────────────
 function Heatmap() {
   const ref = useRef(); useReveal(ref);
-  const [tip,setTip] = useState(null);
+  const [tip,setTip]       = useState(null);   // hover tooltip (desktop)
+  const [tapTip,setTapTip] = useState(null);   // tap tooltip (mobile)
   const getColor = r => r===0?'rgba(255,255,255,.05)':r<=5?'#4c1d95':r<=15?'#7c3aed':r<=25?'#db2777':'#ef4444';
   const top5 = [...STATE_DATA].sort((a,b)=>b.reports-a.reports).slice(0,5);
   const max  = Math.max(...STATE_DATA.map(s=>s.reports));
+
   return (
     <section id="heatmap" style={{ background:'#07050f' }}>
       <div ref={ref} className="section reveal">
@@ -680,27 +955,60 @@ function Heatmap() {
           <h2 style={{ fontSize:48, marginBottom:16 }}>Scam Hotspots <span className="gradient-text">Across India</span></h2>
           <div className="live-badge" style={{ display:'inline-flex' }}><div className="live-dot"/>UPDATING LIVE</div>
         </div>
-        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:48, alignItems:'start' }}>
+
+        <div className="heatmap-outer">
           <div>
-            <div style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:10, marginBottom:16 }}>
+            {/* Mobile inline tap tooltip */}
+            <div className="heatmap-inline-tip">
+              {tapTip
+                ? <><strong style={{color:'#e5e7eb'}}>{tapTip.name}</strong> — <span style={{color:'#a78bfa'}}>{tapTip.reports} reports</span></>
+                : <span style={{color:'#6b7280',fontSize:12}}>Tap a state to see details</span>
+              }
+            </div>
+
+            <div className="heatmap-state-grid">
               {STATE_DATA.map((st,i) => (
-                <div key={i} className="glass-card card-hover"
-                  // onMouseEnter={e=>setTip({name:st.state,reports:st.reports,x:e.clientX,y:e.clientY})}
-                  // onMouseLeave={()=>setTip(null)}
+                <div
+                  key={i}
+                  className="glass-card card-hover"
                   onMouseEnter={e=>{
-  setTip({name:st.name,reports:st.reports,x:e.clientX,y:e.clientY});
-  e.currentTarget.style.transform='scale(1.08)';
-}}
-onMouseLeave={e=>{
-  setTip(null);
-  e.currentTarget.style.transform='scale(1)';
-}}
-                  style={{ background:getColor(st.reports), border:`1px solid ${getColor(st.reports)}88`, borderRadius:10, padding:'14px 6px', textAlign:'center', cursor:'pointer', minHeight:60, display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center', boxShadow:st.reports>0?`0 0 12px ${getColor(st.reports)}44`:'none', transition:'all .25s' }}>
-                  <div style={{ fontSize:10, color:'rgba(255,255,255,.8)', fontWeight:600, lineHeight:1.3 }}>{st.name.split(' ')[0]}</div>
-                  <div style={{ fontSize:16, fontWeight:800, color:'#fff', marginTop:3 }}>{st.reports}</div>
+                    setTip({name:st.name,reports:st.reports,x:e.clientX,y:e.clientY});
+                    e.currentTarget.style.transform='scale(1.08)';
+                  }}
+                  onMouseLeave={e=>{
+                    setTip(null);
+                    e.currentTarget.style.transform='scale(1)';
+                  }}
+                  onTouchStart={()=>{
+                    setTapTip(t => t?.name===st.name ? null : {name:st.name,reports:st.reports});
+                  }}
+                  style={{
+                    background:getColor(st.reports),
+                    border:`1px solid ${getColor(st.reports)}88`,
+                    borderRadius:10,
+                    padding:'14px 6px',
+                    textAlign:'center',
+                    cursor:'pointer',
+                    minHeight:60,
+                    display:'flex',
+                    flexDirection:'column',
+                    alignItems:'center',
+                    justifyContent:'center',
+                    boxShadow:st.reports>0?`0 0 12px ${getColor(st.reports)}44`:'none',
+                    transition:'all .25s',
+                  }}
+                >
+                  <div style={{ fontSize:10, color:'rgba(255,255,255,.8)', fontWeight:600, lineHeight:1.3 }}>
+                    {st.name.split(' ')[0]}
+                  </div>
+                  <div style={{ fontSize:16, fontWeight:800, color:'#fff', marginTop:3 }}>
+                    {st.reports}
+                  </div>
                 </div>
               ))}
             </div>
+
+            {/* Legend */}
             <div style={{ display:'flex', gap:10, flexWrap:'wrap', justifyContent:'center' }}>
               {[['0','rgba(255,255,255,.06)'],['1–5','#4c1d95'],['6–15','#7c3aed'],['16–25','#db2777'],['26+','#ef4444']].map(([l,c])=>(
                 <div key={l} style={{ display:'flex', alignItems:'center', gap:5 }}>
@@ -710,6 +1018,8 @@ onMouseLeave={e=>{
               ))}
             </div>
           </div>
+
+          {/* Right: top 5 ranking */}
           <div>
             <h3 style={{ fontSize:20, marginBottom:24 }}>🏆 Top 5 Most Affected States</h3>
             {top5.map((s,i) => (
@@ -726,6 +1036,8 @@ onMouseLeave={e=>{
             <p style={{ color:'#6b7280', fontSize:12, marginTop:20, fontStyle:'italic' }}>Based on anonymous community reports — updated in real time</p>
           </div>
         </div>
+
+        {/* Desktop hover tooltip — position:fixed, fine on desktop */}
         {tip && (
           <div style={{ position:'fixed', top:tip.y-60, left:tip.x+12, background:'rgba(10,8,24,.95)', border:'1px solid rgba(124,58,237,.4)', borderRadius:10, padding:'8px 14px', zIndex:999, pointerEvents:'none', boxShadow:'0 4px 20px rgba(0,0,0,.6)' }}>
             <div style={{ fontWeight:700, color:'#e5e7eb', fontSize:13 }}>{tip.name}</div>
@@ -743,26 +1055,13 @@ function WADemo() {
   return (
     <section style={{ background:'linear-gradient(135deg,#07050f,#1a0f2e,#07050f)' }}>
       <div ref={ref} className="section reveal">
-        
         <div className="heading-wrapper">
-          <p style={{ fontSize:11, fontWeight:700, letterSpacing:4, textTransform:'uppercase', color:'#a78bfa', marginBottom:14 }}>
-            WhatsApp Bot
-          </p>
-
-          <h2 style={{ fontSize:48, marginBottom:16 }}>
-            WhatsApp Integration <span className="gradient-text">Demo</span>
-          </h2>
-
-          <p style={{ fontSize:16, color:'#9ca3af' }}>
-            Users can report suspicious messages via WhatsApp and receive instant AI-powered scam analysis.
-          </p>
+          <p style={{ fontSize:11, fontWeight:700, letterSpacing:4, textTransform:'uppercase', color:'#a78bfa', marginBottom:14 }}>WhatsApp Bot</p>
+          <h2 style={{ fontSize:48, marginBottom:16 }}>WhatsApp Integration <span className="gradient-text">Demo</span></h2>
+          <p style={{ fontSize:16, color:'#9ca3af' }}>Users can report suspicious messages via WhatsApp and receive instant AI-powered scam analysis.</p>
         </div>
-
         <div className="grid-2" style={{ alignItems:'center', maxWidth:1000, margin:'0 auto' }}>
-          
-          {/* Chat Preview */}
           <div style={{ background:'rgba(0,0,0,.5)', borderRadius:20, overflow:'hidden', border:'1px solid rgba(255,255,255,.08)' }}>
-            
             <div style={{ background:'#075e54', padding:'14px 20px', display:'flex', alignItems:'center', gap:12 }}>
               <div style={{ width:38,height:38,borderRadius:'50%',background:'linear-gradient(135deg,#7c3aed,#db2777)',display:'flex',alignItems:'center',justifyContent:'center',fontSize:18 }}>🛡️</div>
               <div>
@@ -770,12 +1069,10 @@ function WADemo() {
                 <div style={{ color:'#25d366', fontSize:12 }}>● demo</div>
               </div>
             </div>
-
             <div style={{ padding:'20px 18px' }}>
               <div style={{ background:'rgba(255,255,255,.07)', borderRadius:'14px 14px 14px 3px', padding:'11px 14px', fontSize:13, color:'#d1d5db', maxWidth:'88%', marginBottom:14, lineHeight:1.5 }}>
                 Congratulations! You won ₹5,00,000 PM Yojana Lottery. Send Aadhaar + ₹500 processing fee to claim your prize.
               </div>
-
               <div style={{ background:'rgba(124,58,237,.15)', border:'1px solid rgba(124,58,237,.3)', borderRadius:'14px 14px 3px 14px', padding:'14px 16px', fontSize:13, marginLeft:'auto', maxWidth:'95%' }}>
                 <div style={{ color:'#ef4444', fontWeight:700, marginBottom:6 }}>🚨 SCAM DETECTED</div>
                 <div style={{ color:'#f87171', marginBottom:3 }}>📌 Type: LOTTERY / GOVT FRAUD</div>
@@ -786,13 +1083,8 @@ function WADemo() {
               </div>
             </div>
           </div>
-
-          {/* Feature Explanation */}
           <div>
-            <h3 style={{ fontSize:26, marginBottom:24, fontWeight:800 }}>
-              Forward. Analyze. Stay safe.
-            </h3>
-
+            <h3 style={{ fontSize:26, marginBottom:24, fontWeight:800 }}>Forward. Analyze. Stay safe.</h3>
             {[
               {e:'📲',t:'WhatsApp-based reporting', d:'Users can forward suspicious messages directly'},
               {e:'⚡',t:'Instant AI analysis', d:'Get SAFE / SUSPICIOUS / SCAM in seconds'},
@@ -807,24 +1099,9 @@ function WADemo() {
                 </div>
               </div>
             ))}
-
-            {/* Demo Notice (Claude idea improved) */}
-            <div style={{ 
-              background:'rgba(16,185,129,.15)', 
-              border:'1px solid rgba(16,185,129,.4)', 
-              color:'#10b981', 
-              padding:'14px 24px', 
-              borderRadius:12, 
-              fontSize:14, 
-              textAlign:'center', 
-              marginTop:24 
-            }}>
-              📱 <strong>WhatsApp Integration Available</strong> — Bot runs in a controlled demo environment.<br/>
-              {/* <span style={{ fontSize:12, color:'#6b7280', marginTop:6, display:'block' }}>
-                See demo video for live interaction
-              </span> */}
+            <div style={{ background:'rgba(16,185,129,.15)', border:'1px solid rgba(16,185,129,.4)', color:'#10b981', padding:'14px 24px', borderRadius:12, fontSize:14, textAlign:'center', marginTop:24 }}>
+              📱 <strong>WhatsApp Integration Available</strong> — Bot runs in a controlled demo environment.
             </div>
-
           </div>
         </div>
       </div>
@@ -908,7 +1185,7 @@ function Community() {
           <h2 style={{ fontSize:48, marginBottom:14 }}>Warn the <span className="gradient-text">Community</span></h2>
           <p style={{ fontSize:16, color:'#9ca3af' }}>Encountered a scam? Report it anonymously to help protect other women across India.</p>
         </div>
-        <div style={{ background:'rgba(124,58,237,.1)', border:'2px solid rgba(124,58,237,.3)', borderRadius:24, padding:44 }}>
+        <div style={{ background:'rgba(124,58,237,.1)', border:'2px solid rgba(124,58,237,.3)', borderRadius:24, padding:'clamp(20px,5vw,44px)' }}>
           {ok ? (
             <div style={{ textAlign:'center', padding:'32px 0', animation:'fadeInUp .4s ease' }}>
               <div style={{ fontSize:56, marginBottom:16 }}>💜</div>
@@ -918,7 +1195,7 @@ function Community() {
           ) : (
             <>
               <textarea className="inp" value={desc} onChange={e=>setDesc(e.target.value)} rows={4} placeholder="Describe the scam you encountered…" style={{ marginBottom:16 }}/>
-              <select className="inp" value={type} onChange={e=>setType(e.target.value)} style={{ marginBottom:16, cursor:'pointer', resize:'none' }}>
+              <select className="inp" value={type} onChange={e=>setType(e.target.value)} data-type="select" style={{ marginBottom:16, cursor:'pointer', resize:'none' }}>
                 <option value="">Select scam type…</option>
                 {['Matrimonial Fraud','Fake Job Offer','Lottery Scam','Loan Fraud','Impersonation','Phishing Link','Government Scheme','Other'].map(t=><option key={t} value={t}>{t}</option>)}
               </select>
