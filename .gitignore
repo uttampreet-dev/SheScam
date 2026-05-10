@@ -1,5 +1,16 @@
 node_modules
 node_modules/
+
 .env
+.env.local
+.env.*
+
 dist/
 build/
+
+_webjs_auth
+session
+.cursor/
+
+*.log
+.DS_Store
